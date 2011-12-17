@@ -1,0 +1,278 @@
+<?php
+$view = new view;
+$view->name = 'member_files';
+$view->description = 'Meeting minutes and newsletters';
+$view->tag = '';
+$view->view_php = '';
+$view->base_table = 'node';
+$view->is_cacheable = FALSE;
+$view->api_version = 2;
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+$handler = $view->new_display('default', 'Defaults', 'default');
+$handler->override_option('fields', array(
+  'field_file_date_value' => array(
+    'label' => 'Date',
+    'alter' => array(
+      'alter_text' => 0,
+      'text' => '',
+      'make_link' => 0,
+      'path' => '',
+      'link_class' => '',
+      'alt' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'help' => '',
+      'trim' => 0,
+      'max_length' => '',
+      'word_boundary' => 1,
+      'ellipsis' => 1,
+      'html' => 0,
+      'strip_tags' => 0,
+    ),
+    'empty' => '',
+    'hide_empty' => 0,
+    'empty_zero' => 0,
+    'link_to_node' => 0,
+    'label_type' => 'widget',
+    'format' => 'short',
+    'multiple' => array(
+      'multiple_number' => '',
+      'multiple_from' => '',
+      'multiple_to' => '',
+      'group' => '',
+    ),
+    'repeat' => array(
+      'show_repeat_rule' => '',
+    ),
+    'fromto' => array(
+      'fromto' => 'both',
+    ),
+    'exclude' => 0,
+    'id' => 'field_file_date_value',
+    'table' => 'node_data_field_file_date',
+    'field' => 'field_file_date_value',
+    'relationship' => 'none',
+  ),
+  'field_file_file_fid' => array(
+    'label' => 'File',
+    'alter' => array(
+      'alter_text' => 0,
+      'text' => '',
+      'make_link' => 0,
+      'path' => '',
+      'link_class' => '',
+      'alt' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'help' => '',
+      'trim' => 0,
+      'max_length' => '',
+      'word_boundary' => 1,
+      'ellipsis' => 1,
+      'html' => 0,
+      'strip_tags' => 0,
+    ),
+    'empty' => '',
+    'hide_empty' => 0,
+    'empty_zero' => 0,
+    'link_to_node' => 0,
+    'label_type' => 'widget',
+    'format' => 'default',
+    'multiple' => array(
+      'group' => TRUE,
+      'multiple_number' => '',
+      'multiple_from' => '',
+      'multiple_reversed' => FALSE,
+    ),
+    'exclude' => 0,
+    'id' => 'field_file_file_fid',
+    'table' => 'node_data_field_file_file',
+    'field' => 'field_file_file_fid',
+    'relationship' => 'none',
+  ),
+  'name' => array(
+    'label' => 'Category',
+    'alter' => array(
+      'alter_text' => 0,
+      'text' => '',
+      'make_link' => 0,
+      'path' => '',
+      'link_class' => '',
+      'alt' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'help' => '',
+      'trim' => 0,
+      'max_length' => '',
+      'word_boundary' => 1,
+      'ellipsis' => 1,
+      'html' => 0,
+      'strip_tags' => 0,
+    ),
+    'empty' => '',
+    'hide_empty' => 0,
+    'empty_zero' => 0,
+    'link_to_taxonomy' => 0,
+    'exclude' => 0,
+    'id' => 'name',
+    'table' => 'term_data',
+    'field' => 'name',
+    'relationship' => 'none',
+  ),
+));
+$handler->override_option('filters', array(
+  'status_extra' => array(
+    'operator' => '=',
+    'value' => '',
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'status_extra',
+    'table' => 'node',
+    'field' => 'status_extra',
+    'relationship' => 'none',
+  ),
+  'type' => array(
+    'operator' => 'in',
+    'value' => array(
+      'file' => 'file',
+    ),
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'type',
+    'table' => 'node',
+    'field' => 'type',
+    'relationship' => 'none',
+  ),
+  'tid' => array(
+    'operator' => 'or',
+    'value' => array(),
+    'group' => '0',
+    'exposed' => TRUE,
+    'expose' => array(
+      'use_operator' => 0,
+      'operator' => 'tid_op',
+      'identifier' => 'tid',
+      'label' => 'Category:',
+      'bef_filter_description' => '',
+      'bef_format' => 'default',
+      'optional' => 1,
+      'single' => 1,
+      'remember' => 0,
+      'reduce' => 0,
+      'bef_select_all_none' => 0,
+    ),
+    'type' => 'select',
+    'limit' => TRUE,
+    'vid' => '7',
+    'id' => 'tid',
+    'table' => 'term_node',
+    'field' => 'tid',
+    'hierarchy' => 0,
+    'relationship' => 'none',
+    'reduce_duplicates' => 1,
+  ),
+  'field_file_date_value' => array(
+    'operator' => 'between',
+    'value' => array(
+      'value' => NULL,
+      'min' => NULL,
+      'max' => NULL,
+      'default_date' => '',
+      'default_to_date' => '',
+    ),
+    'group' => '0',
+    'exposed' => TRUE,
+    'expose' => array(
+      'use_operator' => 0,
+      'operator' => 'field_file_date_value_op',
+      'identifier' => 'field_file_date_value',
+      'label' => 'Date Range:',
+      'optional' => 1,
+      'remember' => 1,
+    ),
+    'date_fields' => array(
+      'node_data_field_file_date.field_file_date_value' => 'node_data_field_file_date.field_file_date_value',
+    ),
+    'date_method' => 'OR',
+    'granularity' => 'month',
+    'form_type' => 'date_popup',
+    'default_date' => '',
+    'default_to_date' => '',
+    'year_range' => '-3:+3',
+    'id' => 'field_file_date_value',
+    'table' => 'node_data_field_file_date',
+    'field' => 'field_file_date_value',
+    'relationship' => 'none',
+  ),
+));
+$handler->override_option('access', array(
+  'type' => 'role',
+  'role' => array(
+    '8' => 8,
+    '7' => 7,
+    '4' => 4,
+    '9' => 9,
+    '6' => 6,
+    '3' => 3,
+  ),
+));
+$handler->override_option('cache', array(
+  'type' => 'time',
+  'results_lifespan' => '518400',
+  'output_lifespan' => '518400',
+));
+$handler->override_option('title', 'Member Files');
+$handler->override_option('items_per_page', 0);
+$handler->override_option('style_plugin', 'table');
+$handler->override_option('style_options', array(
+  'grouping' => 'name',
+  'override' => 1,
+  'sticky' => 0,
+  'order' => 'desc',
+  'columns' => array(
+    'field_file_date_value' => 'field_file_date_value',
+    'field_file_file_fid' => 'field_file_file_fid',
+    'name' => 'name',
+  ),
+  'info' => array(
+    'field_file_date_value' => array(
+      'sortable' => 1,
+      'separator' => '',
+    ),
+    'field_file_file_fid' => array(
+      'separator' => '',
+    ),
+    'name' => array(
+      'sortable' => 1,
+      'separator' => '',
+    ),
+  ),
+  'default' => 'field_file_date_value',
+));
+$handler = $view->new_display('page', 'Page', 'page_1');
+$handler->override_option('path', 'members/files-test');
+$handler->override_option('menu', array(
+  'type' => 'none',
+  'title' => '',
+  'description' => '',
+  'weight' => 0,
+  'name' => 'navigation',
+));
+$handler->override_option('tab_options', array(
+  'type' => 'none',
+  'title' => '',
+  'description' => '',
+  'weight' => 0,
+  'name' => 'navigation',
+));
