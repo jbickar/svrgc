@@ -1,0 +1,3 @@
+<?php
+
+include_once('range_duty_importer.features.inc');
