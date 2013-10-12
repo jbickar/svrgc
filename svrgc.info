@@ -1,0 +1,6 @@
+name = SRGC
+description = Base functionality for the Sunnyvale Rod & Gun Club website
+core = 7.x
+package = Sunnyvale Rod and Gun Club
+version = 7.x-1.0-alpha1
+project = svrgc
