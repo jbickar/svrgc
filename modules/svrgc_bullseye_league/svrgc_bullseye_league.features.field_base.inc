@@ -59,7 +59,27 @@ function svrgc_bullseye_league_field_default_field_bases() {
     'type' => 'number_decimal',
   );
 
-  // Exported field_base: 'field_league_match_date'
+    // Exported field_base: 'field_league_match_22tf'
+    $field_bases['field_league_match_22tf'] = array(
+        'active' => 1,
+        'cardinality' => 1,
+        'deleted' => 0,
+        'entity_types' => array(),
+        'field_name' => 'field_league_match_22tf',
+        'foreign keys' => array(),
+        'indexes' => array(),
+        'locked' => 0,
+        'module' => 'number',
+        'settings' => array(
+            'decimal_separator' => '.',
+            'precision' => 10,
+            'scale' => 2,
+        ),
+        'translatable' => 0,
+        'type' => 'number_decimal',
+    );
+
+    // Exported field_base: 'field_league_match_date'
   $field_bases['field_league_match_date'] = array(
     'active' => 1,
     'cardinality' => 1,
