@@ -1,6 +1,0 @@
-; $Id$
-name = SRGC Custom
-package = Sunnyvale Rod & Gun Club
-description = Custom module for the Sunnyvale Rod & Gun Club website
-version = 6.x-1.x-dev
-core = 6.x
