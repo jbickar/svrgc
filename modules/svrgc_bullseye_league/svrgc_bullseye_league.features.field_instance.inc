@@ -206,7 +206,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
         ),
         'entity_type' => 'node',
         'field_name' => 'field_league_match_cfagg',
-        'label' => '.cf Aggregate',
+        'label' => 'Center Fire Aggregate',
         'required' => 0,
         'settings' => array(
             'user_register_form' => FALSE,
@@ -248,7 +248,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
         ),
         'entity_type' => 'node',
         'field_name' => 'field_league_match_cfrf',
-        'label' => '.cf Rapid Fire',
+        'label' => 'Center Fire Rapid Fire',
         'required' => 0,
         'settings' => array(
             'max' => 200.2,
@@ -294,7 +294,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
         ),
         'entity_type' => 'node',
         'field_name' => 'field_league_match_cfsf',
-        'label' => '.cf Slow Fire',
+        'label' => 'Center Fire Slow Fire',
         'required' => 0,
         'settings' => array(
             'max' => 200.2,
@@ -340,7 +340,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
         ),
         'entity_type' => 'node',
         'field_name' => 'field_league_match_cftf',
-        'label' => '.cf Timed Fire',
+        'label' => 'Center Fire Timed Fire',
         'required' => 0,
         'settings' => array(
             'max' => 200.2,
