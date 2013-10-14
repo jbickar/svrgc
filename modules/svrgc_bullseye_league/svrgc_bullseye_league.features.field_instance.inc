@@ -147,7 +147,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
     );
 
     // Exported field_instance: 'node-bullseye_league_match-field_league_match_22rf'
-    $field_instances['node-bullseye_league_match-field_league_match_22sf'] = array(
+    $field_instances['node-bullseye_league_match-field_league_match_22rf'] = array(
         'bundle' => 'bullseye_league_match',
         'default_value' => NULL,
         'deleted' => 0,
