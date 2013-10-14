@@ -10,51 +10,89 @@
 function svrgc_bullseye_league_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-bullseye_league_match-body'
-  $field_instances['node-bullseye_league_match-body'] = array(
-    'bundle' => 'bullseye_league_match',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_22agg'
+    $field_instances['node-bullseye_league_match-field_league_match_22agg'] = array(
+        'bundle' => 'bullseye_league_match',
+        'deleted' => 0,
+        'description' => '',
+        'display' => array(
+            'default' => array(
+                'label' => 'above',
+                'module' => 'computed_field',
+                'settings' => array(),
+                'type' => 'computed_field_plain',
+                'weight' => 4,
+            ),
+            'teaser' => array(
+                'label' => 'above',
+                'settings' => array(),
+                'type' => 'hidden',
+                'weight' => 0,
+            ),
         ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => 31,
-    ),
-  );
+        'entity_type' => 'node',
+        'field_name' => 'field_league_match_22agg',
+        'label' => '.22 Aggregate',
+        'required' => 0,
+        'settings' => array(
+            'user_register_form' => FALSE,
+        ),
+        'widget' => array(
+            'active' => 0,
+            'module' => 'computed_field',
+            'settings' => array(),
+            'type' => 'computed',
+            'weight' => 35,
+        ),
+    );
 
-  // Exported field_instance: 'node-bullseye_league_match-field_league_match_22sf'
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_22rf'
+    $field_instances['node-bullseye_league_match-field_league_match_22rf'] = array(
+        'bundle' => 'bullseye_league_match',
+        'default_value' => NULL,
+        'deleted' => 0,
+        'description' => 'Enter the score, with Xs, in the form of <strong>181.05</strong> (that would be 181-5x). Please include the leading zero for the X count.',
+        'display' => array(
+            'default' => array(
+                'label' => 'above',
+                'module' => 'number',
+                'settings' => array(
+                    'decimal_separator' => '.',
+                    'prefix_suffix' => TRUE,
+                    'scale' => 2,
+                    'thousand_separator' => ' ',
+                ),
+                'type' => 'number_decimal',
+                'weight' => 3,
+            ),
+            'teaser' => array(
+                'label' => 'above',
+                'settings' => array(),
+                'type' => 'hidden',
+                'weight' => 0,
+            ),
+        ),
+        'entity_type' => 'node',
+        'field_name' => 'field_league_match_22rf',
+        'label' => '.22 Rapid Fire',
+        'required' => 0,
+        'settings' => array(
+            'max' => 200.2,
+            'min' => 0,
+            'prefix' => '',
+            'suffix' => '',
+            'user_register_form' => FALSE,
+        ),
+        'widget' => array(
+            'active' => 0,
+            'module' => 'number',
+            'settings' => array(),
+            'type' => 'number',
+            'weight' => 34,
+        ),
+    );
+
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_22sf'
   $field_instances['node-bullseye_league_match-field_league_match_22sf'] = array(
     'bundle' => 'bullseye_league_match',
     'default_value' => NULL,
@@ -146,8 +184,44 @@ function svrgc_bullseye_league_field_default_field_instances() {
         ),
     );
 
-    // Exported field_instance: 'node-bullseye_league_match-field_league_match_22rf'
-    $field_instances['node-bullseye_league_match-field_league_match_22rf'] = array(
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_cfagg'
+    $field_instances['node-bullseye_league_match-field_league_match_cfagg'] = array(
+        'bundle' => 'bullseye_league_match',
+        'deleted' => 0,
+        'description' => '',
+        'display' => array(
+            'default' => array(
+                'label' => 'above',
+                'module' => 'computed_field',
+                'settings' => array(),
+                'type' => 'computed_field_plain',
+                'weight' => 4,
+            ),
+            'teaser' => array(
+                'label' => 'above',
+                'settings' => array(),
+                'type' => 'hidden',
+                'weight' => 0,
+            ),
+        ),
+        'entity_type' => 'node',
+        'field_name' => 'field_league_match_cfagg',
+        'label' => '.cf Aggregate',
+        'required' => 0,
+        'settings' => array(
+            'user_register_form' => FALSE,
+        ),
+        'widget' => array(
+            'active' => 0,
+            'module' => 'computed_field',
+            'settings' => array(),
+            'type' => 'computed',
+            'weight' => 35,
+        ),
+    );
+
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_cfrf'
+    $field_instances['node-bullseye_league_match-field_league_match_cfrf'] = array(
         'bundle' => 'bullseye_league_match',
         'default_value' => NULL,
         'deleted' => 0,
@@ -173,8 +247,100 @@ function svrgc_bullseye_league_field_default_field_instances() {
             ),
         ),
         'entity_type' => 'node',
-        'field_name' => 'field_league_match_22rf',
-        'label' => '.22 Rapid Fire',
+        'field_name' => 'field_league_match_cfrf',
+        'label' => '.cf Rapid Fire',
+        'required' => 0,
+        'settings' => array(
+            'max' => 200.2,
+            'min' => 0,
+            'prefix' => '',
+            'suffix' => '',
+            'user_register_form' => FALSE,
+        ),
+        'widget' => array(
+            'active' => 0,
+            'module' => 'number',
+            'settings' => array(),
+            'type' => 'number',
+            'weight' => 34,
+        ),
+    );
+
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_cfsf'
+    $field_instances['node-bullseye_league_match-field_league_match_cfsf'] = array(
+        'bundle' => 'bullseye_league_match',
+        'default_value' => NULL,
+        'deleted' => 0,
+        'description' => 'Enter the score, with Xs, in the form of <strong>181.05</strong> (that would be 181-5x). Please include the leading zero for the X count.',
+        'display' => array(
+            'default' => array(
+                'label' => 'above',
+                'module' => 'number',
+                'settings' => array(
+                    'decimal_separator' => '.',
+                    'prefix_suffix' => TRUE,
+                    'scale' => 2,
+                    'thousand_separator' => ' ',
+                ),
+                'type' => 'number_decimal',
+                'weight' => 3,
+            ),
+            'teaser' => array(
+                'label' => 'above',
+                'settings' => array(),
+                'type' => 'hidden',
+                'weight' => 0,
+            ),
+        ),
+        'entity_type' => 'node',
+        'field_name' => 'field_league_match_cfsf',
+        'label' => '.cf Slow Fire',
+        'required' => 0,
+        'settings' => array(
+            'max' => 200.2,
+            'min' => 0,
+            'prefix' => '',
+            'suffix' => '',
+            'user_register_form' => FALSE,
+        ),
+        'widget' => array(
+            'active' => 0,
+            'module' => 'number',
+            'settings' => array(),
+            'type' => 'number',
+            'weight' => 34,
+        ),
+    );
+
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_cftf'
+    $field_instances['node-bullseye_league_match-field_league_match_cftf'] = array(
+        'bundle' => 'bullseye_league_match',
+        'default_value' => NULL,
+        'deleted' => 0,
+        'description' => 'Enter the score, with Xs, in the form of <strong>181.05</strong> (that would be 181-5x). Please include the leading zero for the X count.',
+        'display' => array(
+            'default' => array(
+                'label' => 'above',
+                'module' => 'number',
+                'settings' => array(
+                    'decimal_separator' => '.',
+                    'prefix_suffix' => TRUE,
+                    'scale' => 2,
+                    'thousand_separator' => ' ',
+                ),
+                'type' => 'number_decimal',
+                'weight' => 3,
+            ),
+            'teaser' => array(
+                'label' => 'above',
+                'settings' => array(),
+                'type' => 'hidden',
+                'weight' => 0,
+            ),
+        ),
+        'entity_type' => 'node',
+        'field_name' => 'field_league_match_cftf',
+        'label' => '.cf Timed Fire',
         'required' => 0,
         'settings' => array(
             'max' => 200.2,
