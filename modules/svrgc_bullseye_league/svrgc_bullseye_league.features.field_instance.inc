@@ -21,13 +21,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
                 'module' => 'computed_field',
                 'settings' => array(),
                 'type' => 'computed_field_plain',
-                'weight' => 4,
+                'weight' => 5,
             ),
             'teaser' => array(
                 'label' => 'above',
                 'settings' => array(),
                 'type' => 'hidden',
-                'weight' => 0,
+                'weight' => 5,
             ),
         ),
         'entity_type' => 'node',
@@ -42,7 +42,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
             'module' => 'computed_field',
             'settings' => array(),
             'type' => 'computed',
-            'weight' => 35,
+            'weight' => 5,
         ),
     );
 
@@ -63,13 +63,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
                     'thousand_separator' => ' ',
                 ),
                 'type' => 'number_decimal',
-                'weight' => 3,
+                'weight' => 4,
             ),
             'teaser' => array(
                 'label' => 'above',
                 'settings' => array(),
                 'type' => 'hidden',
-                'weight' => 0,
+                'weight' => 4,
             ),
         ),
         'entity_type' => 'node',
@@ -88,7 +88,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
             'module' => 'number',
             'settings' => array(),
             'type' => 'number',
-            'weight' => 34,
+            'weight' => 4,
         ),
     );
 
@@ -109,13 +109,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_decimal',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'node',
@@ -134,7 +134,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 34,
+      'weight' => 2,
     ),
   );
 
@@ -161,7 +161,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
                 'label' => 'above',
                 'settings' => array(),
                 'type' => 'hidden',
-                'weight' => 0,
+                'weight' => 3,
             ),
         ),
         'entity_type' => 'node',
@@ -180,7 +180,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
             'module' => 'number',
             'settings' => array(),
             'type' => 'number',
-            'weight' => 34,
+            'weight' => 3,
         ),
     );
 
@@ -195,13 +195,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
                 'module' => 'computed_field',
                 'settings' => array(),
                 'type' => 'computed_field_plain',
-                'weight' => 4,
+                'weight' => 9,
             ),
             'teaser' => array(
                 'label' => 'above',
                 'settings' => array(),
                 'type' => 'hidden',
-                'weight' => 0,
+                'weight' => 9,
             ),
         ),
         'entity_type' => 'node',
@@ -216,7 +216,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
             'module' => 'computed_field',
             'settings' => array(),
             'type' => 'computed',
-            'weight' => 35,
+            'weight' => 9,
         ),
     );
 
@@ -237,13 +237,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
                     'thousand_separator' => ' ',
                 ),
                 'type' => 'number_decimal',
-                'weight' => 3,
+                'weight' => 8,
             ),
             'teaser' => array(
                 'label' => 'above',
                 'settings' => array(),
                 'type' => 'hidden',
-                'weight' => 0,
+                'weight' => 8,
             ),
         ),
         'entity_type' => 'node',
@@ -262,7 +262,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
             'module' => 'number',
             'settings' => array(),
             'type' => 'number',
-            'weight' => 34,
+            'weight' => 8,
         ),
     );
 
@@ -283,13 +283,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
                     'thousand_separator' => ' ',
                 ),
                 'type' => 'number_decimal',
-                'weight' => 3,
+                'weight' => 6,
             ),
             'teaser' => array(
                 'label' => 'above',
                 'settings' => array(),
                 'type' => 'hidden',
-                'weight' => 0,
+                'weight' => 6,
             ),
         ),
         'entity_type' => 'node',
@@ -308,7 +308,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
             'module' => 'number',
             'settings' => array(),
             'type' => 'number',
-            'weight' => 34,
+            'weight' => 6,
         ),
     );
 
@@ -329,13 +329,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
                     'thousand_separator' => ' ',
                 ),
                 'type' => 'number_decimal',
-                'weight' => 3,
+                'weight' => 7,
             ),
             'teaser' => array(
                 'label' => 'above',
                 'settings' => array(),
                 'type' => 'hidden',
-                'weight' => 0,
+                'weight' => 7,
             ),
         ),
         'entity_type' => 'node',
@@ -354,7 +354,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
             'module' => 'number',
             'settings' => array(),
             'type' => 'number',
-            'weight' => 34,
+            'weight' => 7,
         ),
     );
 
@@ -376,13 +376,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
           'show_repeat_rule' => 'show',
         ),
         'type' => 'date_default',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -410,7 +410,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 33,
+      'weight' => 1,
     ),
   );
 
@@ -425,13 +425,13 @@ function svrgc_bullseye_league_field_default_field_instances() {
                 'module' => 'computed_field',
                 'settings' => array(),
                 'type' => 'computed_field_plain',
-                'weight' => 5,
+                'weight' => 10,
             ),
             'teaser' => array(
                 'label' => 'above',
                 'settings' => array(),
                 'type' => 'hidden',
-                'weight' => 0,
+                'weight' => 10,
             ),
         ),
         'entity_type' => 'node',
@@ -446,7 +446,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
             'module' => 'computed_field',
             'settings' => array(),
             'type' => 'computed',
-            'weight' => 36,
+            'weight' => 10,
         ),
     );
 
@@ -464,7 +464,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -488,7 +488,7 @@ function svrgc_bullseye_league_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 32,
+      'weight' => 0,
     ),
   );
 
