@@ -414,7 +414,43 @@ function svrgc_bullseye_league_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-bullseye_league_match-field_league_match_name'
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_grandagg'
+    $field_instances['node-bullseye_league_match-field_league_match_grandagg'] = array(
+        'bundle' => 'bullseye_league_match',
+        'deleted' => 0,
+        'description' => '',
+        'display' => array(
+            'default' => array(
+                'label' => 'above',
+                'module' => 'computed_field',
+                'settings' => array(),
+                'type' => 'computed_field_plain',
+                'weight' => 5,
+            ),
+            'teaser' => array(
+                'label' => 'above',
+                'settings' => array(),
+                'type' => 'hidden',
+                'weight' => 0,
+            ),
+        ),
+        'entity_type' => 'node',
+        'field_name' => 'field_league_match_grandagg',
+        'label' => 'Grand Aggregate',
+        'required' => 0,
+        'settings' => array(
+            'user_register_form' => FALSE,
+        ),
+        'widget' => array(
+            'active' => 0,
+            'module' => 'computed_field',
+            'settings' => array(),
+            'type' => 'computed',
+            'weight' => 36,
+        ),
+    );
+
+    // Exported field_instance: 'node-bullseye_league_match-field_league_match_name'
   $field_instances['node-bullseye_league_match-field_league_match_name'] = array(
     'bundle' => 'bullseye_league_match',
     'default_value' => NULL,
@@ -456,13 +492,21 @@ function svrgc_bullseye_league_field_default_field_instances() {
     ),
   );
 
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('.22 Slow Fire');
-  t('Body');
-  t('Date');
-  t('Enter the score, with Xs, in the form of <strong>181.05</strong> (that would be 181-5x). Please include the leading zero for the X count.');
-  t('Shooter\'s Name');
+    // Translatables
+    // Included for use with string extractors like potx.
+    t('.22 Aggregate');
+    t('.22 Rapid Fire');
+    t('.22 Slow Fire');
+    t('.22 Timed Fire');
+    t('Body');
+    t('Center Fire Aggregate');
+    t('Center Fire Rapid Fire');
+    t('Center Fire Slow Fire');
+    t('Center Fire Timed Fire');
+    t('Date');
+    t('Enter the score, with Xs, in the form of <strong>181.05</strong> (that would be 181-5x). Please include the leading zero for the X count.');
+    t('Grand Aggregate');
+    t('Shooter\'s Name');
 
-  return $field_instances;
+    return $field_instances;
 }

@@ -229,7 +229,41 @@ function svrgc_bullseye_league_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_league_match_name'
+    // Exported field_base: 'field_league_match_grandagg'
+    $field_bases['field_league_match_grandagg'] = array(
+        'active' => 1,
+        'cardinality' => 1,
+        'deleted' => 0,
+        'entity_types' => array(),
+        'field_name' => 'field_league_match_grandagg',
+        'foreign keys' => array(),
+        'indexes' => array(
+            'value' => array(
+                0 => 'value',
+            ),
+        ),
+        'locked' => 0,
+        'module' => 'computed_field',
+        'settings' => array(
+            'code' => '$entity_field[0][\'value\'] = $entity->field_league_match_22agg[LANGUAGE_NONE][0][\'value\'] + $entity->field_league_match_cfagg[LANGUAGE_NONE][0][\'value\'];',
+            'database' => array(
+                'data_default' => '',
+                'data_index' => 1,
+                'data_length' => 32,
+                'data_not_NULL' => 0,
+                'data_precision' => 10,
+                'data_scale' => 3,
+                'data_size' => 'normal',
+                'data_type' => 'numeric',
+            ),
+            'display_format' => '$display_output = $entity_field_item[\'value\'];',
+            'store' => 1,
+        ),
+        'translatable' => 0,
+        'type' => 'computed',
+    );
+
+    // Exported field_base: 'field_league_match_name'
   $field_bases['field_league_match_name'] = array(
     'active' => 1,
     'cardinality' => 1,
