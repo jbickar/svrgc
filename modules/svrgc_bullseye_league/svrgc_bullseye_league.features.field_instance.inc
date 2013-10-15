@@ -498,7 +498,6 @@ function svrgc_bullseye_league_field_default_field_instances() {
     t('.22 Rapid Fire');
     t('.22 Slow Fire');
     t('.22 Timed Fire');
-    t('Body');
     t('Center Fire Aggregate');
     t('Center Fire Rapid Fire');
     t('Center Fire Slow Fire');
