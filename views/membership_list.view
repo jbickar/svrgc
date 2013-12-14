@@ -3,10 +3,9 @@ $view = new view;
 $view->name = 'membership_list';
 $view->description = 'List of Members';
 $view->tag = 'members';
-$view->view_php = '';
 $view->base_table = 'node';
-$view->is_cacheable = FALSE;
-$view->api_version = 2;
+$view->core = 0;
+$view->api_version = '2';
 $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 $handler = $view->new_display('default', 'Defaults', 'default');
 $handler->override_option('relationships', array(
@@ -307,7 +306,7 @@ $handler->override_option('filters', array(
   'rid' => array(
     'operator' => 'or',
     'value' => array(
-      '4' => '4',
+      4 => '4',
     ),
     'group' => '0',
     'exposed' => FALSE,
@@ -321,24 +320,38 @@ $handler->override_option('filters', array(
     'relationship' => 'none',
     'reduce_duplicates' => 0,
   ),
+  'status' => array(
+    'operator' => '=',
+    'value' => '1',
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'status',
+    'table' => 'users',
+    'field' => 'status',
+    'relationship' => 'none',
+  ),
 ));
 $handler->override_option('access', array(
   'type' => 'role',
   'role' => array(
-    '8' => 8,
-    '4' => 4,
-    '9' => 9,
-    '6' => 6,
-    '3' => 3,
+    8 => 8,
+    4 => 4,
+    9 => 9,
+    6 => 6,
+    3 => 3,
   ),
 ));
 $handler->override_option('cache', array(
   'type' => 'time',
-  'results_lifespan' => '518400',
-  'output_lifespan' => '518400',
+  'results_lifespan' => '21600',
+  'output_lifespan' => '21600',
 ));
 $handler->override_option('title', 'Membership Roster');
-$handler->override_option('header', '<p>Please <a href="/contact/2">contact the Membership Chairman</a> with any corrections</p>');
+$handler->override_option('header', '<p>Please <a href="mailto:svgcsvgc@gmail.com">contact the Membership Chairman</a> with any corrections</p>');
 $handler->override_option('header_format', '2');
 $handler->override_option('header_empty', 0);
 $handler->override_option('items_per_page', 0);
@@ -389,3 +402,4 @@ $handler->override_option('tab_options', array(
   'weight' => 0,
   'name' => 'navigation',
 ));
+
