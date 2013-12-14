@@ -133,6 +133,21 @@ $presets['thumbnail'] = array (
 }
 
 /**
+ *  Implements hook_mail_alter().
+ */
+
+function svrgc_mail_alter(&$message) {
+	if (($message['id'] == 'contact_page_mail') || ($message['id'] == 'contact_user_mail')) {
+		$message['headers']['Reply-To'] = $message['from'];
+		$message['body'][2] = $message['body'][1];
+		$message['body'][1] = 'Reply to this message using: '.$message['from'];
+		$message['from'] = 'noreply@sunnyvalegunclub.com';
+		$message['headers']['From'] = $message['from'];
+		$message['params']['mail'] = $message['from'];
+  }
+}
+
+/**
  * Implementation of hook_views_api().
  */
 function svrgc_views_api() {
