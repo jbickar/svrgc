@@ -1,0 +1,279 @@
+<?php
+
+/**
+ * This is example code for a Drupal 6 to Drupal 7 migration. This won't actually
+ * work without defining the referenced vocabularies, content types, and fields
+ * on each side.
+ */
+
+/**
+ * Implements hook_flush_caches().
+ * This will register the migrations when the caches are flushed.
+ * However, it looks like this might also be possible through the UI
+ */
+function d6d7_flush_caches() {
+  d6d7_register_migrations();
+}
+
+/**
+ * Register all D6->D7 migrations.
+ */
+function d6d7_register_migrations() {
+  /**
+   * Each migration being registered takes an array of arguments, some required
+   * and some optional. Start with the common arguments required by all - the
+   * source_connection (connection key, set up in settings.php, pointing to
+   * the Drupal 6 database) and source_version (major version of Drupal).
+   * The connection key should be added to the settings.php file.
+   * e.g.
+   * $databases['legacy']['default'] = array(
+   *   'driver' => 'mysql',
+   *   'database' => '',
+   *   'username' => '',
+   *   'password' => '',
+   *   'host' => '',
+   *   'prefix' => '',
+   * );
+   */
+  $common_arguments = array(
+    'source_connection' => 'legacy',
+    'source_version' => 6,
+  );
+
+  $user_arguments = array(
+    array(
+      'class_name' => 'd6d7BusinessOwnerMigration',
+      'description' => t('Migration of Business Owners'),
+      'machine_name' => 'BusinessOwner',
+    ),
+    array(
+      'class_name' => 'd6d7TechnicalOwnerMigration',
+      'description' => t('Migration of Technical Owners'),
+      'machine_name' => 'TechnicalOwner',
+    ),
+    array(
+      'class_name' => 'd6d7ServiceManagerMigration',
+      'description' => t('Migration of Service Managers'),
+      'machine_name' => 'ServiceManager',
+    ),
+    array(
+      'class_name' => 'd6d7OperationsOwnerMigration',
+      'description' => t('Migration of OperationsOwners'),
+      'machine_name' => 'OperationsOwner',
+    ),
+    array(
+      'class_name' => 'd6d7UsersWithRolesMigration',
+      'description' => t('Migration of Users with Roles'),
+      'machine_name' => 'User',
+    ),
+  );
+
+  foreach ($user_arguments as $arguments) {
+    $arguments = array_merge_recursive($arguments, $common_arguments);
+    Migration::registerMigration($arguments['class_name'], $arguments['machine_name'], $arguments);
+  }
+
+  //  Migration::registerMigration('d6d7WebAuthUserMigration', $arguments['machine_name'],
+  //                              $arguments);
+
+  // For vocabulary migrations, source_vocabulary and destination_vocabulary are
+  // required arguments. Note that in Drupal 6 vocabularies did not have machine
+  // names, so we use the vocabulary ID to uniquely identify them.
+  $vocabulary_arguments = array(
+    array(
+      'description' => t('Migration of Catalog Categories terms from Drupal 6'),
+      'machine_name' => 'Catalog_Categories',
+      'source_vocabulary' => '1',  // D6 Vocabulary ID
+      'destination_vocabulary' => 'catalog_categories',
+      'class_name' => 'd6d7CatalogCategoriesMigration',
+    ),
+    array(
+      'description' => t('Migration of Service Providers terms from Drupal 6'),
+      'machine_name' => 'ServiceProviders',
+      'source_vocabulary' => '3',  // D6 Vocabulary ID
+      'destination_vocabulary' => 'service_providers',
+      'class_name' => 'd6d7ServiceProvidersMigration',
+    ),
+  );
+
+  foreach ($vocabulary_arguments as $arguments) {
+    $arguments = array_merge_recursive($arguments, $common_arguments);
+    Migration::registerMigration($arguments['class_name'], $arguments['machine_name'],
+                                 $arguments);
+  }
+
+  // Node migrations - each has its own class derived from the migrate_d2d class,
+  // specifying its particular field mappings and transformations. source_type
+  // and destination_type are required arguments.
+  $node_arguments = array(
+    array(
+      'class_name' => 'd6d7CatalogEntryMigration',
+      'description' => t('Migration of Catalog Entries from Drupal 6'),
+      'machine_name' => 'CatalogEntry',
+      'source_type' => 'service',
+      'destination_type' => 'catalog_entry',
+//      'dependencies' => array('CatalogCategories',),
+    ),
+    array(
+      'class_name' => 'd6d7OtherProviderCatalogEntryMigration',
+      'description' => t('Migration of Other Provider Catalog Entries from Drupal 6'),
+      'machine_name' => 'OtherCatalogEntry',
+      'source_type' => 'otherservice',
+      'destination_type' => 'catalog_entry',
+    ),
+	array(
+	  'class_name' => 'd6d7OfficialServiceMigration',
+	  'description' => t('Migration of Official Service Data'),
+	  'machine_name' => 'OfficialService',
+	  'source_type' => 'service',
+	  'destination_type' => 'official_its_service',
+    ),
+	array(
+	  'class_name' => 'd6d7ServicePageMigration',
+	  'description' => t('Migration of Official Service Data'),
+	  'machine_name' => 'ServicePage',
+	  'source_type' => 'service',
+	  'destination_type' => 'service_page',
+    ),
+    array(
+      'class_name' => 'd6d7ServiceInformationMigration',
+      'description' => t('Migration of Service Information Pages (Detail Pages)'),
+      'machine_name' => 'ServiceInformation',
+      'source_type' => 'details',
+      'destination_type' => 'service_information',
+    ),
+    array(
+      'class_name' => 'd6d7TopicMigration',
+      'description' => t('Migration of Topic Pages'),
+      'machine_name' => 'Topic',
+      'source_type' => 'concierge',
+      'destination_type' => 'guide',
+    ),
+    array(
+      'class_name' => 'd6d7DescriptionMigration',
+      'description' => t('Migration of Service Descriptions'),
+      'machine_name' => 'Description',
+      'source_type' => 'description',
+      'destination_type' => 'service_description',
+    ),
+    array(
+      'class_name' => 'd6d7MediaMigration',
+      'description' => t('Migration of Media Content Type'),
+      'machine_name' => 'Media',
+      'source_type' => 'media',
+      'destination_type' => 'service_information',
+    ),
+    array(
+      'class_name' => 'd6d7GroupMigration',
+      'description' => t('Migration of Group Content Type'),
+      'machine_name' => 'Group',
+      'source_type' => 'group',
+      'destination_type' => 'page',
+    ),
+    array(
+      'class_name' => 'd6d7OrganizationMigration',
+      'description' => t('Migration of Organization Content Type'),
+      'machine_name' => 'Organization',
+      'source_type' => 'organization',
+      'destination_type' => 'page',
+    ),
+    array(
+      'class_name' => 'd6d7StaticPageMigration',
+      'description' => t('Migration of Static Page Content Type'),
+      'machine_name' => 'Static',
+      'source_type' => 'static',
+      'destination_type' => 'service_information',
+    ),
+    array(
+      'class_name' => 'd6d7TechStrategyCategoryMigration',
+      'description' => t('Migration of Technology Strategy Category Content Type'),
+      'machine_name' => 'TechStrategyCategory',
+      'source_type' => 'techstrategycat',
+      'destination_type' => 'page',
+    ),
+    array(
+      'class_name' => 'd6d7TechStrategyMigration',
+      'description' => t('Migration of Technology Strategy Content Type'),
+      'machine_name' => 'TechStrategy',
+      'source_type' => 'techstrategy',
+      'destination_type' => 'page',
+    ),
+    array(
+      'class_name' => 'd6d7NewsMigration',
+      'description' => t('Migration of HelpSU News'),
+      'machine_name' => 'News',
+      'source_type' => 'news',
+      'destination_type' => 'helpsu_news',
+    ),
+    array(
+      'class_name' => 'd6d7AnnouncementsMigration',
+      'description' => t('Migration of Announcements'),
+      'machine_name' => 'Announcements',
+      'source_type' => 'news',
+      'destination_type' => 'announcement',
+    ),
+    array(
+      'class_name' => 'd6d7AgreementsMigration',
+      'description' => t('Migration of Agreements'),
+      'machine_name' => 'Agreements',
+      'source_type' => 'sla',
+      'destination_type' => 'agreement',
+    ),
+  );
+
+  // Tell the node migrations where the users are coming from, so they can
+  // set up the dependency and resolve D6->D7 uids.
+  $common_node_arguments = $common_arguments + array(
+//    'user_migration' => 'User',
+  );
+
+  foreach ($node_arguments as $arguments) {
+    $arguments = array_merge_recursive($arguments, $common_node_arguments);
+    Migration::registerMigration($arguments['class_name'], $arguments['machine_name'],
+                                 $arguments);
+  }
+
+  $file_arguments = $common_arguments + array(
+    'machine_name' => 'FileMigration',
+    'description' => t('Import Drupal 6 files'),
+//    'user_migration' => 'd6d7UserMigration',
+    'default_uid' => 1,
+    'source_dir' => '/var/www/prod/sites/default/files',
+    'destination_dir' => 'public://',
+  );
+
+  // NOTE: Had issues with this one because the source didn't have the variable file_directory_path set in the database
+  // This caused the sites/default/files path to be duplicated. The d2d migration class uses file_directory_path
+  // to remove it from the resulting path and if it's not set, it doesn't.
+
+  Migration::registerMigration('DrupalFile6Migration', $file_arguments['machine_name'], $file_arguments);
+
+  // Menu migrations -- same requirements as users
+  $menu_arguments = $common_arguments + array(
+    'description' => t('Migration of menus from Drupal 6'),
+    'machine_name' => 'Menu',
+  );
+
+  // We just use the migrate_d2d D6 migration class as-is.
+  Migration::registerMigration('d6d7MenuMigration', $menu_arguments['machine_name'],
+                               $menu_arguments);
+
+  // Menu links migrations -- basic requirements, plus must set up menu dependency
+  $menu_links_arguments = $common_arguments + array(
+    'description' => t('Migration of menu links from Drupal 6'),
+    'machine_name' => 'MenuLinks',
+    'menu_migration' => $menu_arguments['machine_name'],
+  );
+  Migration::registerMigration('DrupalMenuLinks6Migration', $menu_links_arguments['machine_name'],
+                               $menu_links_arguments);
+}
+
+/**
+ * Implements hook_migrate_api().
+ */
+function d6d7_migrate_api() {
+  $api = array(
+    'api' => 2,
+  );
+  return $api;
+}

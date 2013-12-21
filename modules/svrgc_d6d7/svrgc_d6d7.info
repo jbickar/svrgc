@@ -1,0 +1,10 @@
+name = "SRGC D6 to D7 migration"
+description = "Migrate content from D6 site to D7"
+package = "Sunnyvale Rod and Gun Club"
+core = 7.x
+dependencies[] = migrate
+dependencies[] = migrate_d2d
+; files[] = term.inc
+files[] = node.inc
+; files[] = user.inc
+; files[] = menu.inc
