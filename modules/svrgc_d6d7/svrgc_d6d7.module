@@ -67,7 +67,7 @@ function svrgc_d6d7_register_migrations() {
 
   // Again, we're using the migrate_d2d class directly.
   // The soft dependency says that while we don't have to run the user migration
-  // first, we want to make sure it's listed first so the vocubularies are
+  // first, we want to make sure it's listed first so the vocabularies are
   // listed right ahead of the node migrations.
   $common_vocabulary_arguments = $common_arguments + array(
     'class_name' => 'DrupalTerm6Migration',
