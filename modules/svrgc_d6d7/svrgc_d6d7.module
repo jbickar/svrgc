@@ -27,7 +27,7 @@ function svrgc_d6d7_register_migrations() {
   $common_arguments = array(
     'source_connection' => 'legacy',
     'source_version' => 6,
-    'group_name' => 'example_group',
+    'group_name' => 'SunnyvaleRodandGunClub',
   );
 
   // The description and the migration machine name are also required arguments,

@@ -28,3 +28,4 @@ class svrgcd6d7BullseyeLeagueMatchMigration extends svrgcd6d7NodeMigration {
     $this->addFieldMapping('field_league_match_grandagg', 'field_league_match_grandagg');
     $this->addFieldMapping('field_league_match_date', 'field_league_match_date');
   }
+}
