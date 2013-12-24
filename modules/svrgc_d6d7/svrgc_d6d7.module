@@ -92,7 +92,7 @@ function svrgc_d6d7_register_migrations() {
     ),
     array(
       'class_name' => 'svrgcd6d7OperatingHoursMigration',
-      'description' => t('Migration of Operating Hoursnodes from Drupal 6'),
+      'description' => t('Migration of Operating Hours nodes from Drupal 6'),
       'machine_name' => 'OperatingHours',
       'source_type' => 'operating_hours',
       'destination_type' => 'operating_hours',
