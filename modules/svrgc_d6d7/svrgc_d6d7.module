@@ -90,6 +90,13 @@ function svrgc_d6d7_register_migrations() {
       'source_type' => 'bullseye_league_match',
       'destination_type' => 'bullseye_league_match',
     ),
+    array(
+      'class_name' => 'svrgcd6d7OperatingHoursMigration',
+      'description' => t('Migration of Operating Hoursnodes from Drupal 6'),
+      'machine_name' => 'OperatingHours',
+      'source_type' => 'operating_hours',
+      'destination_type' => 'operating_hours',
+    ),
   );
   // Tell the node migrations where the users are coming from, so they can
   // set up the dependency and resolve D6->D7 uids.
