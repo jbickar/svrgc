@@ -41,15 +41,12 @@ class svrgcd6d7OperatingHoursMigration extends svrgcd6d7NodeMigration {
     $this->addFieldMapping('field_op_hours_hours', 'field_op_hours_hours');
     $this->addFieldMapping('field_op_hours_hours:value2', 'field_op_hours_hours:value2');
     $this->addFieldMapping('field_op_hours_hours:rrule', 'field_op_hours_hours:rrule');
-//    $this->addFieldMapping('field_op_hours_hours:timezone', 'field_op_hours_hours:timezone');
     // Note that we map migrated terms by the vocabulary ID.
     $this->addFieldMapping('field_op_hours_member_hours', '4')
       ->sourceMigration('OperatingHours')
-//    $this->addFieldMapping('field_op_hours_member_hours:source_type', 'tid');
       ->arguments(array('source_type' => 'tid'));
     $this->addFieldMapping('field_op_hours_range', '5')
       ->sourceMigration('Range')
-//    $this->addFieldMapping('field_op_hours_range:source_type', 'tid');
       ->arguments(array('source_type' => 'tid'));
   }
 }
