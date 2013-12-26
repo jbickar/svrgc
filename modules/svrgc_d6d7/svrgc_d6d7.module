@@ -91,6 +91,13 @@ function svrgc_d6d7_register_migrations() {
       'destination_type' => 'bullseye_league_match',
     ),
     array(
+      'class_name' => 'svrgcd6d7EventsMigration',
+      'description' => t('Migration of Event nodes from Drupal 6'),
+      'machine_name' => 'Events',
+      'source_type' => 'event',
+      'destination_type' => 'event',
+    ),
+    array(
       'class_name' => 'svrgcd6d7OperatingHoursMigration',
       'description' => t('Migration of Operating Hours nodes from Drupal 6'),
       'machine_name' => 'OperatingHours',

@@ -31,6 +31,24 @@ class svrgcd6d7BullseyeLeagueMatchMigration extends svrgcd6d7NodeMigration {
 }
 
 /**
+ *  Events
+ */
+
+class svrgcd6d7EventsMigration extends svrgcd6d7NodeMigration {
+  public function __construct(array $arguments) {
+    parent::__construct($arguments);
+
+    $this->addFieldMapping('field_event_date_time', 'field_event_datetime');
+    $this->addFieldMapping('field_event_date_time:value2', 'field_event_datetime:value2');
+    $this->addFieldMapping('field_event_date_time:rrule', 'field_event_datetime:rrule');
+    // Note that we map migrated terms by the vocabulary ID.
+    $this->addFieldMapping('field_op_hours_range', '5')
+      ->sourceMigration('Range')
+      ->arguments(array('source_type' => 'tid'));
+  }
+}
+
+/**
  *  Operating Hours
  */
 
