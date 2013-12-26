@@ -107,7 +107,7 @@ function svrgc_d6d7_register_migrations() {
     array(
       'class_name' => 'svrgcd6d7PagesMigration',
       'description' => t('Migration of Page nodes from Drupal 6'),
-      'machine_name' => 'Page',
+      'machine_name' => 'Pages',
       'source_type' => 'page',
       'destination_type' => 'stanford_page',
     ),
