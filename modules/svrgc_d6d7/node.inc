@@ -79,5 +79,6 @@ class svrgcd6d7PagesMigration extends svrgcd6d7NodeMigration {
 
     $this->addFieldMapping('field_s_page_file', 'upload');
     $this->addFieldMapping('field_s_page_file:description', 'upload:description');
+    $this->addFieldMapping('field_s_page_file:display', 'upload:list');
   }
 }
