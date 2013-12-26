@@ -104,7 +104,6 @@ function svrgc_d6d7_register_migrations() {
       'source_type' => 'operating_hours',
       'destination_type' => 'operating_hours',
     ),
-  );
     array(
       'class_name' => 'svrgcd6d7PagesMigration',
       'description' => t('Migration of Page nodes from Drupal 6'),
