@@ -76,5 +76,8 @@ class svrgcd6d7OperatingHoursMigration extends svrgcd6d7NodeMigration {
 class svrgcd6d7PagesMigration extends svrgcd6d7NodeMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
+
+    $this->addFieldMapping('field_s_page_file', 'upload');
+    $this->addFieldMapping('field_s_page_file:description', 'upload:description');
   }
 }
