@@ -105,6 +105,14 @@ function svrgc_d6d7_register_migrations() {
       'destination_type' => 'operating_hours',
     ),
   );
+    array(
+      'class_name' => 'svrgcd6d7PagesMigration',
+      'description' => t('Migration of Page nodes from Drupal 6'),
+      'machine_name' => 'Page',
+      'source_type' => 'page',
+      'destination_type' => 'stanford_page',
+    ),
+  );
   // Tell the node migrations where the users are coming from, so they can
   // set up the dependency and resolve D6->D7 uids.
   $common_node_arguments = $common_arguments + array(

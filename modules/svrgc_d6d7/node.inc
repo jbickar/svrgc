@@ -68,3 +68,13 @@ class svrgcd6d7OperatingHoursMigration extends svrgcd6d7NodeMigration {
       ->arguments(array('source_type' => 'tid'));
   }
 }
+
+/**
+ *  Pages
+ */
+
+class svrgcd6d7PagesMigration extends svrgcd6d7NodeMigration {
+  public function __construct(array $arguments) {
+    parent::__construct($arguments);
+  }
+}
