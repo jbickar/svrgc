@@ -92,5 +92,9 @@ class svrgcd6d7PhotosMigration extends svrgcd6d7NodeMigration {
     parent::__construct($arguments);
 
 //    $this->addFieldMapping('field_s_image_info', 'field_photo_photo');
+    // Note that we map migrated terms by the vocabulary ID.
+    $this->addFieldMapping('field_s_slide_gallery', '3')
+      ->sourceMigration('Gallery')
+      ->arguments(array('source_type' => 'tid'));
   }
 }
