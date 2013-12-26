@@ -82,3 +82,15 @@ class svrgcd6d7PagesMigration extends svrgcd6d7NodeMigration {
     $this->addFieldMapping('field_s_page_file:display', 'upload:list');
   }
 }
+
+/**
+ *  Photos
+ */
+
+class svrgcd6d7PhotosMigration extends svrgcd6d7NodeMigration {
+  public function __construct(array $arguments) {
+    parent::__construct($arguments);
+
+//    $this->addFieldMapping('field_s_image_info', 'field_photo_photo');
+  }
+}

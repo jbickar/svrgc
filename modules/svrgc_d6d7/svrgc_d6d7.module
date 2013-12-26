@@ -111,6 +111,13 @@ function svrgc_d6d7_register_migrations() {
       'source_type' => 'page',
       'destination_type' => 'stanford_page',
     ),
+    array(
+      'class_name' => 'svrgcd6d7PhotosMigration',
+      'description' => t('Migration of Photo nodes from Drupal 6'),
+      'machine_name' => 'Photos',
+      'source_type' => 'photo',
+      'destination_type' => 'stanford_slide',
+    ),
   );
   // Tell the node migrations where the users are coming from, so they can
   // set up the dependency and resolve D6->D7 uids.
