@@ -6,14 +6,6 @@
 abstract class svrgcd6d7UserMigration extends DrupalUser6Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
-
-  }
-
-}
-
-class svrgcd6d7UsersWithRolesMigration extends svrgcd6d7UserMigration {
-  public function __construct(array $arguments) {
-    parent::__construct($arguments);
     $this->addFieldMapping('is_new')->defaultValue('TRUE');
     // Keep the same UID's
 	  $this->addFieldMapping('uid', 'uid');

@@ -34,7 +34,7 @@ function svrgc_d6d7_register_migrations() {
   // which will be unique for each migration you register.
   $user_arguments = array(
     array(
-      'class_name' => 'svrgcd6d7UsersWithRolesMigration',
+      'class_name' => 'svrgcd6d7UserMigration',
       'description' => t('Migration of users from Drupal 6'),
       'machine_name' => 'SRGCUsers',
     ),
@@ -75,7 +75,7 @@ function svrgc_d6d7_register_migrations() {
   // listed right ahead of the node migrations.
   $common_vocabulary_arguments = $common_arguments + array(
     'class_name' => 'DrupalTerm6Migration',
-    'soft_dependencies' => array('User'),
+    'soft_dependencies' => array('SRGCUsers'),
   );
   foreach ($vocabulary_arguments as $arguments) {
     $arguments += $common_vocabulary_arguments;
@@ -126,7 +126,7 @@ function svrgc_d6d7_register_migrations() {
   // Tell the node migrations where the users are coming from, so they can
   // set up the dependency and resolve D6->D7 uids.
   $common_node_arguments = $common_arguments + array(
-    'user_migration' => 'User',
+    'user_migration' => 'SRGCUsers',
   );
   foreach ($node_arguments as $arguments) {
     $arguments = array_merge_recursive($arguments, $common_node_arguments);
