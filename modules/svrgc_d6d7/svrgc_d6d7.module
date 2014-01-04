@@ -33,6 +33,7 @@ function svrgc_d6d7_register_migrations() {
   // The description and the migration machine name are also required arguments,
   // which will be unique for each migration you register.
   $arguments = $common_arguments + array(
+    'class_name' => 'svrgcd6d7UserMigration',
     'description' => t('Migration of users from Drupal 6'),
     'machine_name' => 'User',
   );
