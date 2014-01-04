@@ -34,9 +34,9 @@ function svrgc_d6d7_register_migrations() {
   // which will be unique for each migration you register.
   $user_arguments = array(
     array(
-      'class_name' => 'svrgcd6d7UserMigration',
+      'class_name' => 'svrgcd6d7UsersWithRolesMigration',
       'description' => t('Migration of users from Drupal 6'),
-      'machine_name' => 'User',
+      'machine_name' => 'SRGCUsers',
     ),
   );
 
