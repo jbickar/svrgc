@@ -134,7 +134,15 @@ function svrgc_d6d7_register_migrations() {
                                  $arguments);
   }
 
+  $file_arguments = $common_arguments + array(
+      'machine_name' => 'SRGCFileMigration',
+      'description' => t('Import Drupal 6 files'),
+      'default_uid' => 1,
+      'source_dir' => '/home/srgcadmin/srgcdrupal/files',
+      'destination_dir' => 'public://',
+    );
 
+  Migration::registerMigration('DrupalFile6Migration', $file_arguments['machine_name'], $file_arguments);
 }
 
 /**
