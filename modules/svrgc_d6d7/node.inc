@@ -39,7 +39,7 @@ class svrgcd6d7EventsMigration extends svrgcd6d7NodeMigration {
     parent::__construct($arguments);
 
     $this->addFieldMapping('field_event_datetime', 'field_event_date_time');
-    $this->addFieldMapping('field_event_datetime:value2', 'field_event_date_time:value2');
+    $this->addFieldMapping('field_event_datetime:to', 'field_event_date_time:value2');
     $this->addFieldMapping('field_event_datetime:rrule', 'field_event_date_time:rrule');
     // Note that we map migrated terms by the vocabulary ID.
     $this->addFieldMapping('field_event_range', '5')

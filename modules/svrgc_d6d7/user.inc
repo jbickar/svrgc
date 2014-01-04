@@ -3,7 +3,7 @@
 /**
  * Common mappings for the Drupal 6 user migrations.
  */
-abstract class svrgcd6d7UserMigration extends DrupalUser6Migration {
+class svrgcd6d7UserMigration extends DrupalUser6Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
     $this->addFieldMapping('is_new')->defaultValue('TRUE');
