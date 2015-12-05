@@ -1,0 +1,20 @@
+default:
+  extensions:
+    Drupal\DrupalExtension\Extension:
+      blackbox: ~
+      api_driver: 'drush'
+      drush:
+        alias: sv.prod
+      region_map:
+        Header: "#header"
+        Main: "#main"
+        Content: "#content"
+        Left sidebar: "#sidebar-left"
+        Content Header: "#content-header"
+        Content Top: "#content-top"
+        Content Area: "#content-area"
+      selectors:
+        message_selector: '.alert'
+        error_message_selector: '.alert.alert-error'
+        success_message_selector: '.alert.alert-success'
+
