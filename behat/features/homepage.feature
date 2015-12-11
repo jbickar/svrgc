@@ -8,10 +8,10 @@ Feature: Homepage Content
     Then I should see "<Content>" in the "<Region>" region
 
     Examples:
-      | Content           | Region                |
+      | Content                                                                             | Region       |
       | Since 1961, the Sunnyvale Rod & Gun Club has served shooters from its foothill site | Content Area |
-      | Sunnyvale Rod & Gun Club is open to the public | Content Area |
-      | NOTE: We do not rent or sell firearms or ammunition. | Content Area |
+      | Sunnyvale Rod & Gun Club is open to the public                                      | Content Area |
+      | NOTE: We do not rent or sell firearms or ammunition.                                | Content Area |
 
   Scenario: Homepage Headings
     Given I am on the homepage
