@@ -3,6 +3,7 @@ Feature: Action Pistol Content
   As an end user
   I want to check for the existence of content that should appear on the activities/action-pistol page
 
+  @safe
   Scenario: Action Pistol Headings
     Given I am on "activities/action-pistol"
     Then I should see the heading "Action Pistol"

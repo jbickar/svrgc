@@ -3,6 +3,7 @@ Feature: Club Content
   As an end user
   I want to check for the existence of content that should appear on the club page
 
+  @safe
   Scenario: Club Headings and content
     Given I am on "club"
     Then I should see the heading "Join the Club"

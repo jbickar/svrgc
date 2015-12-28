@@ -3,6 +3,7 @@ Feature: Trap Content
   As an end user
   I want to check for the existence of content that should appear on the activities/trapshooting page
 
+  @safe
   Scenario: Trap Headings
     Given I am on "activities/trapshooting"
     Then I should see the heading "Trap"

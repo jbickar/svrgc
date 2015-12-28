@@ -3,6 +3,7 @@ Feature: Five-Stand Shotgun Content
   As an end user
   I want to check for the existence of content that should appear on the activities/five-stand page
 
+  @safe
   Scenario: Five-Stand Content
     Given I am on "activities/five-stand"
     Then I should see the heading "Five Stand Shotgun"

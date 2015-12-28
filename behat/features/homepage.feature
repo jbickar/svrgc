@@ -3,6 +3,7 @@ Feature: Homepage Content
   As an end user
   I want to check for the existence of content that should appear on the homepage
 
+  @safe
   Scenario Outline: Homepage content
     Given I am on the homepage
     Then I should see "<Content>" in the "<Region>" region
@@ -13,6 +14,7 @@ Feature: Homepage Content
       | Sunnyvale Rod & Gun Club is open to the public                                      | Content Area |
       | NOTE: We do not rent or sell firearms or ammunition.                                | Content Area |
 
+  @safe
   Scenario: Homepage Headings
     Given I am on the homepage
     Then I should see the heading "Welcome to the Sunnyvale Rod & Gun Club"

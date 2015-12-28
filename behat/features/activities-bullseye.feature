@@ -3,6 +3,7 @@ Feature: Bullseye Pistol Content
   As an end user
   I want to check for the existence of content that should appear on the activities/bullseye page
 
+  @safe
   Scenario: Bullseye Pistol Headings
     Given I am on "activities/bullseye"
     Then I should see the heading "Bullseye Pistol"

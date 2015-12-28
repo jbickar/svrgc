@@ -3,6 +3,7 @@ Feature: Range Hours Content
   As an end user
   I want to check for the existence of content that should appear on the range/hours page
 
+  @safe
   Scenario: Hours Headings
     Given I am on "range/hours"
     Then I should see the heading "Range Hours"

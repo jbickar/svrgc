@@ -3,6 +3,7 @@ Feature: Activities Content
   As an end user
   I want to check for the existence of content that should appear on the activities page
 
+  @safe
   Scenario: Activities Headings
     Given I am on "activities"
     Then I should see the heading "Activities"

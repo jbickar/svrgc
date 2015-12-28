@@ -3,6 +3,7 @@ Feature: Range Content
   As an end user
   I want to check for the existence of content that should appear on the range page
 
+  @safe
   Scenario: Range Headings
     Given I am on "range"
     Then I should see the heading "Ranges"

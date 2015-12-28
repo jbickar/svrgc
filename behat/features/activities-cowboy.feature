@@ -3,6 +3,7 @@ Feature: Cowboy Action Shooting Content
   As an end user
   I want to check for the existence of content that should appear on the activities/cowboy page
 
+  @safe
   Scenario: Cowboy Headings
     Given I am on "activities/cowboy"
     Then I should see the heading "Cowboy Action Shooting"

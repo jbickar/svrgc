@@ -3,6 +3,7 @@ Feature: Service Rifle Content
   As an end user
   I want to check for the existence of content that should appear on the activities/service-rifle page
 
+  @safe
   Scenario: Service Rifle Headings
     Given I am on "activities/service-rifle"
     Then I should see the heading "Service Rifle"

@@ -3,6 +3,7 @@ Feature: Silhoutte Content
   As an end user
   I want to check for the existence of content that should appear on the activities/silhouette page
 
+  @safe
   Scenario: Silhouette Headings
     Given I am on "activities/silhouette"
     Then I should see the heading "Silhouette: Smallbore and Air Rifle"
