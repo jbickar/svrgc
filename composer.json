@@ -1,0 +1,11 @@
+{
+  "name": "srgc/svrgc",
+  "description": "Custom code for SRGC Drupal website.",
+  "type": "drupal-custom-module",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": {
+      "composer/installers": "^1.2"
+  }
+}
+
