@@ -7,16 +7,18 @@
  */
 
 /**
- * Implements hook_flush_caches().
+ * Implements hook_migrate_api().
  */
-function svrgc_d6d7_flush_caches() {
-  svrgc_d6d7_register_migrations();
-}
+function svrgc_d6d7_migrate_api() {
+  $api = array(
+    'api' => 2,
+    'groups' => array(
+      'svrgc_d6d7_public_migration' => array(
+        'title' => 'SRGC Drupal 6 to Drupal 7 public site migrations',
+      )
+    )
+  );
 
-/**
- * Register all D6->D7 migrations.
- */
-function svrgc_d6d7_register_migrations() {
   /**
    * Each migration being registered takes an array of arguments, some required
    * and some optional. Start with the common arguments required by all - the
@@ -27,45 +29,59 @@ function svrgc_d6d7_register_migrations() {
   $common_arguments = array(
     'source_connection' => 'legacy',
     'source_version' => 6,
-    'group_name' => 'SunnyvaleRodandGunClub',
+    'group_name' => 'svrgc_d6d7_public_migration',
+    'format_mappings' => array(
+      '0' => 'plain_text',
+      '1' => 'filtered_html',
+      '2' => 'full_html',
+      '3' => 'full_html',
+      '4' => 'content_editor_text_format',
+    )
   );
 
-  // The description and the migration machine name are also required arguments,
-  // which will be unique for each migration you register.
-  $user_arguments = array(
-    array(
-      'class_name' => 'svrgcd6d7UserMigration',
-      'description' => t('Migration of users from Drupal 6'),
-      'machine_name' => 'SRGCUsers',
-    ),
-  );
+  // Register the file migration.
+  // source_dir needs to be adjusted to match your file system.
+  $api['migrations']['File'] = $common_arguments + array(
+      'machine_name' => 'filemigration',
+      'description' => t('Import Drupal 6 files'),
+      'class_name' => 'DrupalFile6Migration',
+      'user_migration' => 'User',
+      'default_uid' => 1,
+      'source_dir' => DRUPAL_ROOT . '/../../srgcdrupal',
+      // @TODO: private files.
+      'destination_dir' => 'public://files',
+    );
 
-  foreach ($user_arguments as $arguments) {
-    $arguments = array_merge_recursive($arguments, $common_arguments);
-    Migration::registerMigration($arguments['class_name'], $arguments['machine_name'], $arguments);
-  }
+  // Register the user migration.
+  // We just use the migrate_d2d D6 migration class as-is.
+  $api['migrations']['User'] = $common_arguments + array(
+      'description' => t('Migration of Users from Drupal 6'),
+      'class_name' => 'DrupalUser6Migration',
+    );
 
   // For vocabulary migrations, source_vocabulary and destination_vocabulary are
   // required arguments. Note that in Drupal 6 vocabularies did not have machine
   // names, so we use the vocabulary ID to uniquely identify them.
   $vocabulary_arguments = array(
-    array(
+    'Gallery' => array(
       'description' => t('Migration of Gallery terms from Drupal 6'),
-      'machine_name' => 'Gallery',
       'source_vocabulary' => '3',  // D6 Vocabulary ID
       'destination_vocabulary' => 'gallery',
     ),
-    array(
+    'OperatingHours' => array(
       'description' => t('Migration of Operating Hours terms from Drupal 6'),
-      'machine_name' => 'OperatingHours',
       'source_vocabulary' => '4',  // D6 Vocabulary ID
       'destination_vocabulary' => 'operating_hours',
     ),
-    array(
+    'Range' => array(
       'description' => t('Migration of Range terms from Drupal 6'),
-      'machine_name' => 'Range',
       'source_vocabulary' => '5',  // D6 Vocabulary ID
       'destination_vocabulary' => 'range',
+    ),
+    'FileType' => array(
+      'description' => t('Migration of File Type terms from Drupal 6'),
+      'source_vocabulary' => '7',  // D6 Vocabulary ID
+      'destination_vocabulary' => 'file_type',
     ),
   );
 
@@ -74,83 +90,100 @@ function svrgc_d6d7_register_migrations() {
   // first, we want to make sure it's listed first so the vocabularies are
   // listed right ahead of the node migrations.
   $common_vocabulary_arguments = $common_arguments + array(
-    'class_name' => 'DrupalTerm6Migration',
-    'soft_dependencies' => array('SRGCUsers'),
-  );
-  foreach ($vocabulary_arguments as $arguments) {
+      'class_name' => 'DrupalTerm6Migration',
+      'soft_dependencies' => array('User'),
+    );
+  foreach ($vocabulary_arguments as $migration_name => $arguments) {
     $arguments += $common_vocabulary_arguments;
-    Migration::registerMigration($arguments['class_name'], $arguments['machine_name'],
-                                 $arguments);
+    $api['migrations'][$migration_name] = $arguments;
   }
 
   // Node migrations - each has its own class derived from the migrate_d2d class,
   // specifying its particular field mappings and transformations. source_type
   // and destination_type are required arguments.
   $node_arguments = array(
-    array(
-      'class_name' => 'svrgcd6d7BullseyeLeagueMatchMigration',
+    'BullseyeLeagueMatchNodes' => array(
+      'class_name' => 'SVRGCD6D7BullseyeLeagueMatchNodeMigration',
       'description' => t('Migration of Bullseye League Match nodes from Drupal 6'),
-      'machine_name' => 'BullseyeLeagueMatch',
       'source_type' => 'bullseye_league_match',
       'destination_type' => 'bullseye_league_match',
     ),
-    array(
-      'class_name' => 'svrgcd6d7EventsMigration',
+    'BullseyeHandicapLeagueMatchNodes' => array(
+      'class_name' => 'SVRGCD6D7BullseyeHandicapLeagueMatchNodeMigration',
+      'description' => t('Migration of Bullseye Handicap League Match nodes from Drupal 6'),
+      'source_type' => 'bullseye_handicap_league_match',
+      // @TODO: create content type on destination.
+      'destination_type' => 'bullseye_handicap_league_match',
+    ),
+    'EventNodes' => array(
+      'class_name' => 'SVRGCD6D7EventNodeMigration',
       'description' => t('Migration of Event nodes from Drupal 6'),
-      'machine_name' => 'Events',
       'source_type' => 'event',
       'destination_type' => 'event',
     ),
-    array(
-      'class_name' => 'svrgcd6d7OperatingHoursMigration',
+    'FileNodes' => array(
+      'class_name' => 'SVRGCD6D7FileNodeMigration',
+      'description' => t('Migration of File nodes from Drupal 6'),
+      'source_type' => 'event',
+      // @TODO: create content type on destination.
+      'destination_type' => 'file',
+    ),
+    'OperatingHoursNodes' => array(
+      'class_name' => 'SVRGCD6D7OperatingHoursNodeMigration',
       'description' => t('Migration of Operating Hours nodes from Drupal 6'),
-      'machine_name' => 'OperatingHours',
       'source_type' => 'operating_hours',
       'destination_type' => 'operating_hours',
     ),
-    array(
-      'class_name' => 'svrgcd6d7PagesMigration',
+    'PageNodes' => array(
+      'class_name' => 'SVRGCD6D7PageNodeMigration',
       'description' => t('Migration of Page nodes from Drupal 6'),
-      'machine_name' => 'Pages',
       'source_type' => 'page',
       'destination_type' => 'stanford_page',
     ),
-    array(
-      'class_name' => 'svrgcd6d7PhotosMigration',
+    'PhotoNodes' => array(
+      'class_name' => 'SVRGCD6D7PhotoNodeMigration',
       'description' => t('Migration of Photo nodes from Drupal 6'),
-      'machine_name' => 'Photos',
       'source_type' => 'photo',
       'destination_type' => 'stanford_slide',
     ),
+    'ProfileNodes' => array(
+      'class_name' => 'SVRGCD6D7ProfileNodeMigration',
+      'description' => t('Migration of Profile nodes from Drupal 6'),
+      'source_type' => 'profile',
+      // @TODO: Map this to D7 user entity.
+      'destination_type' => 'user',
+    ),
   );
+
   // Tell the node migrations where the users are coming from, so they can
   // set up the dependency and resolve D6->D7 uids.
   $common_node_arguments = $common_arguments + array(
-    'user_migration' => 'SRGCUsers',
-  );
-  foreach ($node_arguments as $arguments) {
-    $arguments = array_merge_recursive($arguments, $common_node_arguments);
-    Migration::registerMigration($arguments['class_name'], $arguments['machine_name'],
-                                 $arguments);
-  }
-
-  $file_arguments = $common_arguments + array(
-      'machine_name' => 'SRGCFileMigration',
-      'description' => t('Import Drupal 6 files'),
-      'default_uid' => 1,
-      'source_dir' => '/home/srgcadmin/srgcdrupal/files',
-      'destination_dir' => 'public://',
+      'user_migration' => 'User',
+      'file_migration' => 'File',
+      'soft_dependencies' => array('File'),
     );
 
-  Migration::registerMigration('DrupalFile6Migration', $file_arguments['machine_name'], $file_arguments);
-}
+  foreach ($node_arguments as $migration_name => $arguments) {
+    $arguments = array_merge_recursive($arguments, $common_node_arguments);
+    $api['migrations'][$migration_name] = $arguments;
+  }
 
-/**
- * Implements hook_migrate_api().
- */
-function svrgc_d6d7_migrate_api() {
-  $api = array(
-    'api' => 2,
-  );
+  // Menu migrations -- same requirements as users
+  $menu_arguments = $common_arguments + array(
+      'description' => t('Migration of menus from Drupal 6'),
+      'class_name' => 'DrupalMenu6Migration',
+    );
+
+  // We just use the migrate_d2d D6 migration class as-is.
+  $api['migrations']['Menu'] = $menu_arguments;
+
+  // Menu links migrations -- basic requirements, plus must set up menu dependency
+  $menu_links_arguments = $common_arguments + array(
+      'description' => t('Migration of menu links from Drupal 6'),
+      'class_name' => 'DrupalMenuLinks6Migration',
+      'menu_migration' => 'Menu',
+    );
+  $api['migrations']['MenuLinks'] = $menu_links_arguments;
+
   return $api;
 }

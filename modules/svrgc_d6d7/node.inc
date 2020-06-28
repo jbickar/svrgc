@@ -3,7 +3,7 @@
 /**
  * Common mappings for the Drupal 6 node migrations.
  */
-abstract class svrgcd6d7NodeMigration extends DrupalNode6Migration {
+abstract class SVRGCD6D7NodeMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
   }
@@ -13,8 +13,18 @@ abstract class svrgcd6d7NodeMigration extends DrupalNode6Migration {
  *  Bullseye League Matches
  */
 
-class svrgcd6d7BullseyeLeagueMatchMigration extends svrgcd6d7NodeMigration {
+class SVRGCD6D7BullseyeLeagueMatchNodeMigration extends SVRGCD6D7NodeMigration {
   public function __construct(array $arguments) {
+    // Add any other data we're pulling into the source row, before the parent
+    // constructor.
+    $this->sourceFields['field_league_match_22sf'] = '.22 Slow Fire';
+    $this->sourceFields['field_league_match_22tf'] = '.22 Timed Fire';
+    $this->sourceFields['field_league_match_22rf'] = '.22 Rapid Fire';
+    $this->sourceFields['field_league_match_cfsf'] = 'CF Slow Fire';
+    $this->sourceFields['field_league_match_cftf'] = 'CF Timed Fire';
+    $this->sourceFields['field_league_match_cfrf'] = 'CF Rapid Fire';
+    $this->sourceFields['field_league_match_date'] = 'Date';
+
     parent::__construct($arguments);
 
     $this->addFieldMapping('field_league_match_22sf', 'field_league_match_22sf');
@@ -34,17 +44,25 @@ class svrgcd6d7BullseyeLeagueMatchMigration extends svrgcd6d7NodeMigration {
  *  Events
  */
 
-class svrgcd6d7EventsMigration extends svrgcd6d7NodeMigration {
+class SVRGCD6D7EventNodeMigration extends SVRGCD6D7NodeMigration {
   public function __construct(array $arguments) {
+    // Add any other data we're pulling into the source row, before the parent
+    // constructor.
+    $this->sourceFields['field_event_date_time'] = 'Date and Start Time';
+    $this->sourceFields['field_event_date_time:value2'] = 'Date and End Time';
+    $this->sourceFields['field_event_date_time:rrule'] = 'Repeat Rule';
     parent::__construct($arguments);
 
     $this->addFieldMapping('field_event_datetime', 'field_event_date_time');
     $this->addFieldMapping('field_event_datetime:to', 'field_event_date_time:value2');
     $this->addFieldMapping('field_event_datetime:rrule', 'field_event_date_time:rrule');
-    // Note that we map migrated terms by the vocabulary ID.
+
+    // Taxonomy term mapping.
     $this->addFieldMapping('field_event_range', '5')
-      ->sourceMigration('Range')
-      ->arguments(array('source_type' => 'tid'));
+      ->sourceMigration('Range');
+    $this->addFieldMapping('field_event_range:source_type')
+      ->defaultValue('tid');
+
   }
 }
 
@@ -52,20 +70,29 @@ class svrgcd6d7EventsMigration extends svrgcd6d7NodeMigration {
  *  Operating Hours
  */
 
-class svrgcd6d7OperatingHoursMigration extends svrgcd6d7NodeMigration {
+class SVRGCD6D7OperatingHoursNodeMigration extends SVRGCD6D7NodeMigration {
   public function __construct(array $arguments) {
+    // Add any other data we're pulling into the source row, before the parent
+    // constructor.
+    $this->sourceFields['field_op_hours_hours'] = 'Date and Start Time';
+    $this->sourceFields['field_op_hours_hours:value2'] = 'Date and End Time';
+    $this->sourceFields['field_op_hours_hours:rrule'] = 'Repeat Rule';
     parent::__construct($arguments);
 
     $this->addFieldMapping('field_op_hours_hours', 'field_op_hours_hours');
     $this->addFieldMapping('field_op_hours_hours:value2', 'field_op_hours_hours:value2');
     $this->addFieldMapping('field_op_hours_hours:rrule', 'field_op_hours_hours:rrule');
-    // Note that we map migrated terms by the vocabulary ID.
+
+    // Taxonomy term mapping.
     $this->addFieldMapping('field_op_hours_member_hours', '4')
-      ->sourceMigration('OperatingHours')
-      ->arguments(array('source_type' => 'tid'));
+      ->sourceMigration('OperatingHours');
+    $this->addFieldMapping('field_op_hours_member_hours:source_type')
+      ->defaultValue('tid');
+
     $this->addFieldMapping('field_op_hours_range', '5')
-      ->sourceMigration('Range')
-      ->arguments(array('source_type' => 'tid'));
+      ->sourceMigration('Range');
+    $this->addFieldMapping('field_op_hours_range:source_type')
+      ->defaultValue('tid');
   }
 }
 
@@ -73,13 +100,25 @@ class svrgcd6d7OperatingHoursMigration extends svrgcd6d7NodeMigration {
  *  Pages
  */
 
-class svrgcd6d7PagesMigration extends svrgcd6d7NodeMigration {
+class SVRGCD6D7PageNodeMigration extends SVRGCD6D7NodeMigration {
   public function __construct(array $arguments) {
+    // Add any other data we're pulling into the source row, before the parent
+    // constructor.
+    $this->sourceFields['upload'] = "Upload";
     parent::__construct($arguments);
 
-    $this->addFieldMapping('field_s_page_file', 'upload');
+    // Map files from D6 core upload field to File Field.
+    // See https://www.drupal.org/node/1819704#comment-8874705
+    $this->addFieldMapping('field_s_page_file', 'upload')
+      ->sourceMigration('File');
+    $this->addFieldMapping('field_s_page_file:file_class')
+      ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_s_page_file:preserve_files')
+      ->defaultValue(TRUE);
     $this->addFieldMapping('field_s_page_file:description', 'upload:description');
     $this->addFieldMapping('field_s_page_file:display', 'upload:list');
+    $this->addFieldMapping('field_s_page_file:language')
+      ->defaultValue(LANGUAGE_NONE);
   }
 }
 
@@ -87,14 +126,19 @@ class svrgcd6d7PagesMigration extends svrgcd6d7NodeMigration {
  *  Photos
  */
 
-class svrgcd6d7PhotosMigration extends svrgcd6d7NodeMigration {
+class SVRGCD6D7PhotoNodeMigration extends SVRGCD6D7NodeMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-//    $this->addFieldMapping('field_s_image_info', 'field_photo_photo');
-    // Note that we map migrated terms by the vocabulary ID.
+    // @TODO: figure out this field mapping. This comes from 2014.
+    //$this->addFieldMapping('field_s_image_info', 'field_photo_photo');
+
+
+    // Taxonomy term mapping.
     $this->addFieldMapping('field_s_slide_gallery', '3')
-      ->sourceMigration('Gallery')
-      ->arguments(array('source_type' => 'tid'));
+      ->sourceMigration('Gallery');
+    $this->addFieldMapping('field_s_slide_gallery:source_type')
+      ->defaultValue('tid');
+
   }
 }
