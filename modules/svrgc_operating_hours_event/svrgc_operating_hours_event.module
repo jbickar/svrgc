@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the SVRGC Operating Hours and Event feature.
+ */
+
+include_once 'svrgc_operating_hours_event.features.inc';
