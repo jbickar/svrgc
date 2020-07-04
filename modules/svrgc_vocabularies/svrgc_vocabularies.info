@@ -1,0 +1,14 @@
+name = SVRGC Vocabularies
+description = Gallery and File Type vocabularies
+core = 7.x
+package = Sunnyvale Rod and Gun Club
+version = 7.x-1.x-dev
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = strongarm
+dependencies[] = taxonomy
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[taxonomy][] = file_type
+features[taxonomy][] = gallery
+project path = sites/all/modules/custom/svrgc/modules

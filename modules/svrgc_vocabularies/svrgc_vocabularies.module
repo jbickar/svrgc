@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the SVRGC Vocabularies feature.
+ */
+
+include_once 'svrgc_vocabularies.features.inc';
