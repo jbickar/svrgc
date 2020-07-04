@@ -41,6 +41,37 @@ class SVRGCD6D7BullseyeLeagueMatchNodeMigration extends SVRGCD6D7NodeMigration {
 }
 
 /**
+ *  Bullseye League Handicap Matches
+ */
+
+class SVRGCD6D7BullseyeHandicapLeagueMatchNodeMigration extends SVRGCD6D7NodeMigration {
+  public function __construct(array $arguments) {
+    // Add any other data we're pulling into the source row, before the parent
+    // constructor.
+    $this->sourceFields['field_league_match_22sf'] = '.22 Slow Fire';
+    $this->sourceFields['field_league_match_22tf'] = '.22 Timed Fire';
+    $this->sourceFields['field_league_match_22rf'] = '.22 Rapid Fire';
+    $this->sourceFields['field_league_match_cfsf'] = 'CF Slow Fire';
+    $this->sourceFields['field_league_match_cftf'] = 'CF Timed Fire';
+    $this->sourceFields['field_league_match_cfrf'] = 'CF Rapid Fire';
+    $this->sourceFields['field_league_match_date'] = 'Date';
+
+    parent::__construct($arguments);
+
+    $this->addFieldMapping('field_league_match_22sf', 'field_league_match_22sf');
+    $this->addFieldMapping('field_league_match_22tf', 'field_league_match_22tf');
+    $this->addFieldMapping('field_league_match_22rf', 'field_league_match_22rf');
+//    $this->addFieldMapping('field_league_match_22agg', 'field_league_match_22agg');
+    $this->addFieldMapping('field_league_match_cfsf', 'field_league_match_cfsf');
+    $this->addFieldMapping('field_league_match_cftf', 'field_league_match_cftf');
+    $this->addFieldMapping('field_league_match_cfrf', 'field_league_match_cfrf');
+//    $this->addFieldMapping('field_league_match_cfagg', 'field_league_match_cfagg');
+//    $this->addFieldMapping('field_league_match_grandagg', 'field_league_match_grandagg');
+    $this->addFieldMapping('field_league_match_date', 'field_league_match_date');
+  }
+}
+
+/**
  *  Events
  */
 
@@ -63,6 +94,38 @@ class SVRGCD6D7EventNodeMigration extends SVRGCD6D7NodeMigration {
     $this->addFieldMapping('field_event_range:source_type')
       ->defaultValue('tid');
 
+  }
+}
+
+/**
+ *  Files
+ */
+
+class SVRGCD6D7FileNodeMigration extends SVRGCD6D7NodeMigration
+{
+  public function __construct(array $arguments)
+  {
+    parent::__construct($arguments);
+
+    // Taxonomy term mapping.
+    $this->addFieldMapping('field_file_type', '7')
+      ->sourceMigration('File Type');
+    $this->addFieldMapping('field_file_type:source_type')
+      ->defaultValue('tid');
+
+    // Map files from D6 core upload field to File Field.
+    // See https://www.drupal.org/node/1819704#comment-8874705
+    // @TODO: Create private file field and map to that instead of field_s_page_file.
+    $this->addFieldMapping('field_s_page_file', 'upload')
+      ->sourceMigration('File');
+    $this->addFieldMapping('field_s_page_file:file_class')
+      ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_s_page_file:preserve_files')
+      ->defaultValue(TRUE);
+    $this->addFieldMapping('field_s_page_file:description', 'upload:description');
+    $this->addFieldMapping('field_s_page_file:display', 'upload:list');
+    $this->addFieldMapping('field_s_page_file:language')
+      ->defaultValue(LANGUAGE_NONE);
   }
 }
 
@@ -140,5 +203,17 @@ class SVRGCD6D7PhotoNodeMigration extends SVRGCD6D7NodeMigration {
     $this->addFieldMapping('field_s_slide_gallery:source_type')
       ->defaultValue('tid');
 
+  }
+}
+
+/**
+ *  Profiles
+ */
+
+class SVRGCD6D7ProfileNodeMigration extends SVRGCD6D7NodeMigration {
+  public function __construct(array $arguments) {
+    parent::__construct($arguments);
+
+    // @TODO: map these to User entities.
   }
 }
