@@ -59,6 +59,26 @@ function svrgc_d6d7_migrate_api() {
       'class_name' => 'DrupalUser6Migration',
     );
 
+  // Register the role migration.
+  // We just use the migrate_d2d D6 migration class as-is.
+  $api['migrations']['Roles'] = $common_arguments + array(
+      'description' => t('Migration of Roles from Drupal 6'),
+      'class_name' => 'DrupalRole6Migration',
+      'role_mappings' => array(
+        'administrator' => 'administrator',
+        'anonymous user' => 'anonymous user',
+        'authenticated user' => 'authenticated user',
+        'Bullseye Shooter' => 'bullseye_shooter',
+        'caliber' => 'caliber',
+        'Forum Moderator' => 'forum_moderator',
+        'Member' => 'member',
+        'Membership Chairman' => 'membership_chairman',
+        'Power User' => 'power_user',
+        'Site Admin' => 'administrator',
+
+      )
+    );
+
   // For vocabulary migrations, source_vocabulary and destination_vocabulary are
   // required arguments. Note that in Drupal 6 vocabularies did not have machine
   // names, so we use the vocabulary ID to uniquely identify them.

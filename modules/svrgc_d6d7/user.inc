@@ -13,6 +13,8 @@ class svrgcd6d7UserMigration extends DrupalUser6Migration {
     $this->sourceFields['field_profile_membership_type'] = 'Membership Type';
     $this->sourceFields['field_profile_phone'] = 'Phone Number';
     parent::__construct($arguments);
+    $this->addFieldMapping('roles', 'roles')
+      ->sourceMigration('Roles');
     $this->addFieldMapping('is_new')->defaultValue('TRUE');
     // Keep the same UID's
 	  $this->addFieldMapping('uid', 'uid');
