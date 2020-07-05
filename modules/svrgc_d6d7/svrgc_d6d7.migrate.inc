@@ -168,6 +168,9 @@ function svrgc_d6d7_migrate_api() {
   }
 
   // Menu migrations -- same requirements as users
+  /**
+   * Not migrating menus.
+
   $menu_arguments = $common_arguments + array(
       'description' => t('Migration of menus from Drupal 6'),
       'class_name' => 'DrupalMenu6Migration',
@@ -183,6 +186,6 @@ function svrgc_d6d7_migrate_api() {
       'menu_migration' => 'Menu',
     );
   $api['migrations']['MenuLinks'] = $menu_links_arguments;
-
+  */
   return $api;
 }
