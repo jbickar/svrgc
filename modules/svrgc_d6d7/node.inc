@@ -222,8 +222,24 @@ class SVRGCD6D7PhotoNodeMigration extends SVRGCD6D7NodeMigration {
 
 class SVRGCD6D7ProfileNodeMigration extends SVRGCD6D7NodeMigration {
   public function __construct(array $arguments) {
+    // Add any other data we're pulling into the source row, before the parent
+    // constructor.
+    $this->sourceFields['field_profile_fullname'] = 'Full Name';
+    $this->sourceFields['field_profile_firstname'] = 'First Name';
+    $this->sourceFields['field_profile_lastname'] = 'Last Name';
+    $this->sourceFields['field_profile_membership_type'] = 'Membership Type';
+    $this->sourceFields['field_profile_phone'] = 'Phone Number';
     parent::__construct($arguments);
 
     // @TODO: map these to User entities.
+    $this->addFieldMapping('field_user_first_name', 'field_profile_firstname')
+      ->sourceMigration('User');
+    $this->addFieldMapping('field_user_last_name', 'field_profile_lastname')
+      ->sourceMigration('User');
+    $this->addFieldMapping('field_user_membership_type', 'field_profile_membership_type')
+      ->sourceMigration('User');
+    $this->addFieldMapping('field_user_phone_number', 'field_profile_phone')
+      ->sourceMigration('User');
+
   }
 }

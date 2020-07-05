@@ -124,8 +124,7 @@ function svrgc_d6d7_migrate_api() {
     'FileNodes' => array(
       'class_name' => 'SVRGCD6D7FileNodeMigration',
       'description' => t('Migration of File nodes from Drupal 6'),
-      'source_type' => 'event',
-      // @TODO: create content type on destination.
+      'source_type' => 'file',
       'destination_type' => 'file',
     ),
     'OperatingHoursNodes' => array(
