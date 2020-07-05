@@ -1,4 +1,4 @@
-name = SVRGC User
+name = SRGC User
 description = User entity configuration for SRGC
 core = 7.x
 package = Sunnyvale Rod and Gun Club

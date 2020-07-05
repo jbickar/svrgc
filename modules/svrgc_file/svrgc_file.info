@@ -1,4 +1,4 @@
-name = SVRGC File
+name = SRGC File
 description = File content type and vocabulary
 core = 7.x
 package = Sunnyvale Rod and Gun Club
