@@ -48,7 +48,7 @@ function svrgc_d6d7_migrate_api() {
       'user_migration' => 'User',
       'default_uid' => 1,
       'source_dir' => DRUPAL_ROOT . '/../../srgcdrupal',
-      // @TODO: private files.
+      // @TODO: private_upload files.
       'destination_dir' => 'public://files',
     );
 
@@ -57,6 +57,8 @@ function svrgc_d6d7_migrate_api() {
   $api['migrations']['User'] = $common_arguments + array(
       'description' => t('Migration of Users from Drupal 6'),
       'class_name' => 'DrupalUser6Migration',
+      'role_migration' => 'Roles',
+      'soft_dependencies' => array('Roles'),
     );
 
   // Register the role migration.
@@ -75,7 +77,6 @@ function svrgc_d6d7_migrate_api() {
         'Membership Chairman' => 'membership_chairman',
         'Power User' => 'power_user',
         'Site Admin' => 'administrator',
-
       )
     );
 
