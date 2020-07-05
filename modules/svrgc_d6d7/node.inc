@@ -115,7 +115,7 @@ class SVRGCD6D7FileNodeMigration extends SVRGCD6D7NodeMigration
 
     // Taxonomy term mapping.
     $this->addFieldMapping('field_file_type', '7')
-      ->sourceMigration('File Type');
+      ->sourceMigration('FileType');
     $this->addFieldMapping('field_file_type:source_type')
       ->defaultValue('tid');
 
@@ -127,10 +127,7 @@ class SVRGCD6D7FileNodeMigration extends SVRGCD6D7NodeMigration
       ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_file_file:preserve_files')
       ->defaultValue(TRUE);
-    $this->addFieldMapping('field_file_file:description', 'field_file_file:description');
     $this->addFieldMapping('field_file_file:display', 'field_file_file:list');
-    $this->addFieldMapping('field_file_file:language')
-      ->defaultValue(LANGUAGE_NONE);
   }
 }
 
