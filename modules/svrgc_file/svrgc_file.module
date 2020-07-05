@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the SVRGC File feature.
+ */
+
+include_once 'svrgc_file.features.inc';
