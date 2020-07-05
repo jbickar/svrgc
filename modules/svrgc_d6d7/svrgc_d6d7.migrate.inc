@@ -58,6 +58,7 @@ function svrgc_d6d7_migrate_api() {
     'description' => t('Migration of Users from Drupal 6'),
     'class_name' => 'DrupalUser6Migration',
     'role_migration' => 'Roles',
+    'picture_migration' => 'UserPictures',
     'soft_dependencies' => array('Roles'),
   );
 
@@ -79,6 +80,17 @@ function svrgc_d6d7_migrate_api() {
       'Site Admin' => 'administrator',
     )
   );
+
+  /*
+   * User Picture Migration
+   */
+  $api['migrations']['UserPictures'] = $common_arguments + array(
+      'description' => t('Migration of user pictures from Drupal 6.'),
+      'class_name' => 'DrupalPicture6Migration',
+      'default_uid' => 1, // The default owner id if owner is not present
+      'source_dir' => DRUPAL_ROOT . '/../../srgcdrupal',
+      'destination_dir' => 'public://',
+    );
 
   // For vocabulary migrations, source_vocabulary and destination_vocabulary are
   // required arguments. Note that in Drupal 6 vocabularies did not have machine
