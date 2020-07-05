@@ -105,7 +105,13 @@ class SVRGCD6D7FileNodeMigration extends SVRGCD6D7NodeMigration
 {
   public function __construct(array $arguments)
   {
+    // Add any other data we're pulling into the source row, before the parent
+    // constructor.
+    $this->sourceFields['field_file_file'] = 'File';
+    $this->sourceFields['field_file_date'] = 'Date';
     parent::__construct($arguments);
+
+    $this->addFieldMapping('field_file_date', 'field_file_date');
 
     // Taxonomy term mapping.
     $this->addFieldMapping('field_file_type', '7')
@@ -115,16 +121,15 @@ class SVRGCD6D7FileNodeMigration extends SVRGCD6D7NodeMigration
 
     // Map files from D6 core upload field to File Field.
     // See https://www.drupal.org/node/1819704#comment-8874705
-    // @TODO: Create private file field and map to that instead of field_s_page_file.
-    $this->addFieldMapping('field_s_page_file', 'upload')
+    $this->addFieldMapping('field_file_file', 'field_file_file')
       ->sourceMigration('File');
-    $this->addFieldMapping('field_s_page_file:file_class')
+    $this->addFieldMapping('field_file_file:file_class')
       ->defaultValue('MigrateFileFid');
-    $this->addFieldMapping('field_s_page_file:preserve_files')
+    $this->addFieldMapping('field_file_file:preserve_files')
       ->defaultValue(TRUE);
-    $this->addFieldMapping('field_s_page_file:description', 'upload:description');
-    $this->addFieldMapping('field_s_page_file:display', 'upload:list');
-    $this->addFieldMapping('field_s_page_file:language')
+    $this->addFieldMapping('field_file_file:description', 'field_file_file:description');
+    $this->addFieldMapping('field_file_file:display', 'field_file_file:list');
+    $this->addFieldMapping('field_file_file:language')
       ->defaultValue(LANGUAGE_NONE);
   }
 }
@@ -191,10 +196,15 @@ class SVRGCD6D7PageNodeMigration extends SVRGCD6D7NodeMigration {
 
 class SVRGCD6D7PhotoNodeMigration extends SVRGCD6D7NodeMigration {
   public function __construct(array $arguments) {
+
+    // Add any other data we're pulling into the source row, before the parent
+    // constructor.
+    $this->sourceFields['field_photo_photo'] = 'Photo';
+
     parent::__construct($arguments);
 
-    // @TODO: figure out this field mapping. This comes from 2014.
-    //$this->addFieldMapping('field_s_image_info', 'field_photo_photo');
+    // @TODO: See if this works. It's a Field Collection, so might need to do some additional work.
+    $this->addFieldMapping('field_s_image_info', 'field_photo_photo');
 
 
     // Taxonomy term mapping.
