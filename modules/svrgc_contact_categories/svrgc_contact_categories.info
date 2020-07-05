@@ -1,0 +1,7 @@
+name = SVRGC Contact Categories
+description = Categories for the Contact form
+core = 7.x
+package = Sunnyvale Rod and Gun Club
+version = 7.x-1.x-dev
+features[features_api][] = api:2
+project path = sites/all/modules/custom/svrgc/modules
