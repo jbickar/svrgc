@@ -42,43 +42,43 @@ function svrgc_d6d7_migrate_api() {
   // Register the file migration.
   // source_dir needs to be adjusted to match your file system.
   $api['migrations']['File'] = $common_arguments + array(
-      'machine_name' => 'filemigration',
-      'description' => t('Import Drupal 6 files'),
-      'class_name' => 'DrupalFile6Migration',
-      'user_migration' => 'User',
-      'default_uid' => 1,
-      'source_dir' => DRUPAL_ROOT . '/../../srgcdrupal',
-      // @TODO: private_upload files.
-      'destination_dir' => 'public://files',
-    );
+    'machine_name' => 'filemigration',
+    'description' => t('Import Drupal 6 files'),
+    'class_name' => 'DrupalFile6Migration',
+    'user_migration' => 'User',
+    'default_uid' => 1,
+    'source_dir' => DRUPAL_ROOT . '/../../srgcdrupal',
+    // @TODO: private_upload files.
+    'destination_dir' => 'public://files',
+  );
 
   // Register the user migration.
   // We just use the migrate_d2d D6 migration class as-is.
   $api['migrations']['User'] = $common_arguments + array(
-      'description' => t('Migration of Users from Drupal 6'),
-      'class_name' => 'DrupalUser6Migration',
-      'role_migration' => 'Roles',
-      'soft_dependencies' => array('Roles'),
-    );
+    'description' => t('Migration of Users from Drupal 6'),
+    'class_name' => 'DrupalUser6Migration',
+    'role_migration' => 'Roles',
+    'soft_dependencies' => array('Roles'),
+  );
 
   // Register the role migration.
   // We just use the migrate_d2d D6 migration class as-is.
   $api['migrations']['Roles'] = $common_arguments + array(
-      'description' => t('Migration of Roles from Drupal 6'),
-      'class_name' => 'DrupalRole6Migration',
-      'role_mappings' => array(
-        'administrator' => 'administrator',
-        'anonymous user' => 'anonymous user',
-        'authenticated user' => 'authenticated user',
-        'Bullseye Shooter' => 'bullseye_shooter',
-        'caliber' => 'caliber',
-        'Forum Moderator' => 'forum_moderator',
-        'Member' => 'member',
-        'Membership Chairman' => 'membership_chairman',
-        'Power User' => 'power_user',
-        'Site Admin' => 'administrator',
-      )
-    );
+    'description' => t('Migration of Roles from Drupal 6'),
+    'class_name' => 'DrupalRole6Migration',
+    'role_mappings' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'Bullseye Shooter' => 'bullseye_shooter',
+      'caliber' => 'caliber',
+      'Forum Moderator' => 'forum_moderator',
+      'Member' => 'member',
+      'Membership Chairman' => 'membership_chairman',
+      'Power User' => 'power_user',
+      'Site Admin' => 'administrator',
+    )
+  );
 
   // For vocabulary migrations, source_vocabulary and destination_vocabulary are
   // required arguments. Note that in Drupal 6 vocabularies did not have machine
@@ -111,9 +111,9 @@ function svrgc_d6d7_migrate_api() {
   // first, we want to make sure it's listed first so the vocabularies are
   // listed right ahead of the node migrations.
   $common_vocabulary_arguments = $common_arguments + array(
-      'class_name' => 'DrupalTerm6Migration',
-      'soft_dependencies' => array('User'),
-    );
+    'class_name' => 'DrupalTerm6Migration',
+    'soft_dependencies' => array('User'),
+  );
   foreach ($vocabulary_arguments as $migration_name => $arguments) {
     $arguments += $common_vocabulary_arguments;
     $api['migrations'][$migration_name] = $arguments;
@@ -178,10 +178,10 @@ function svrgc_d6d7_migrate_api() {
   // Tell the node migrations where the users are coming from, so they can
   // set up the dependency and resolve D6->D7 uids.
   $common_node_arguments = $common_arguments + array(
-      'user_migration' => 'User',
-      'file_migration' => 'File',
-      'soft_dependencies' => array('File'),
-    );
+    'user_migration' => 'User',
+    'file_migration' => 'File',
+    'soft_dependencies' => array('File'),
+  );
 
   foreach ($node_arguments as $migration_name => $arguments) {
     $arguments = array_merge_recursive($arguments, $common_node_arguments);
