@@ -49,7 +49,7 @@ function svrgc_d6d7_migrate_api() {
     'default_uid' => 1,
     'source_dir' => DRUPAL_ROOT . '/../../srgcdrupal',
     // @TODO: private_upload files.
-    'destination_dir' => 'public://files',
+    'destination_dir' => 'public://',
   );
 
   // Register the user migration.
