@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * svrgc_file.features.field_instance.inc
@@ -13,6 +14,7 @@ function svrgc_file_field_default_field_instances() {
   // Exported field_instance: 'node-file-field_file_date'.
   $field_instances['node-file-field_file_date'] = array(
     'bundle' => 'file',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => 'Enter the date <strong>of the meeting or newsletter</strong>, not today\'s date. For newsletters, enter the date as the 1st of the month.',
     'display' => array(
@@ -100,24 +102,24 @@ function svrgc_file_field_default_field_instances() {
         'active_updating' => 0,
         'file_name' => array(
           'options' => array(
-            'pathauto' => 0,
-            'slashes' => 0,
-            'transliterate' => 0,
+            'pathauto' => 1,
+            'slashes' => 1,
+            'transliterate' => 1,
           ),
-          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
+          'value' => '[field_file_date-date].[filefield-extension-original]',
         ),
         'file_path' => array(
           'options' => array(
-            'pathauto' => 0,
-            'slashes' => 0,
-            'transliterate' => 0,
+            'pathauto' => 1,
+            'slashes' => 1,
+            'transliterate' => 1,
           ),
-          'value' => '',
+          'value' => 'members/[term-raw]',
         ),
-        'redirect' => 0,
+        'redirect' => 1,
         'retroactive_update' => 0,
       ),
-      'filefield_paths_enabled' => 0,
+      'filefield_paths_enabled' => 1,
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
@@ -146,7 +148,19 @@ function svrgc_file_field_default_field_instances() {
           'image_9-col-banner-short' => 0,
           'image_12-col-banner' => 0,
           'image_12-col-banner-tall' => 0,
+          'image_banner-850x400' => 0,
+          'image_facebook_share_image' => 0,
+          'image_full-width-banner' => 0,
+          'image_full-width-banner-short' => 0,
+          'image_full_width_banner_shorts_scale_and_crop_1600x400' => 0,
+          'image_full_width_banner_tall' => 0,
+          'image_half-page-profile' => 0,
+          'image_header_370_x_170' => 0,
+          'image_header_370_x_240' => 0,
+          'image_header_scale_850x400' => 0,
+          'image_huge-landscape' => 0,
           'image_icon-profile' => 0,
+          'image_icon-scaled' => 0,
           'image_icon-square' => 0,
           'image_large' => 0,
           'image_large-landscape' => 0,
@@ -163,8 +177,13 @@ function svrgc_file_field_default_field_instances() {
           'image_medium' => 0,
           'image_page-width' => 0,
           'image_sm-landscape' => 0,
+          'image_sm-landscape-scaled' => 0,
           'image_sm-profile' => 0,
+          'image_sm-profile-scaled' => 0,
+          'image_sm-scaled' => 0,
           'image_sm-square' => 0,
+          'image_square_370_x_370' => 0,
+          'image_square_scale_and_crop_270_x_270' => 0,
           'image_thmb-landscape' => 0,
           'image_thmb-profile' => 0,
           'image_thmb-square' => 0,
